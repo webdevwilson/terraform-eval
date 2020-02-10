@@ -1,3 +1,4 @@
+IMG := webdevwilson/terraform-eval:latest
 
 .PHONY: clean
 clean:
@@ -8,5 +9,8 @@ bin/terraform-eval:
 
 .PHONY: docker-build
 docker-build:
-	docker build -t terraform-eval .
+	docker build -t $(IMG) .
 
+.PHONY: docker-push
+docker-push: docker-build
+	docker push $(IMG)
